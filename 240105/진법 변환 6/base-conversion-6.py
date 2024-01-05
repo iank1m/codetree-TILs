@@ -1,10 +1,13 @@
 def to_decimal(n, base):
     decimal_value = 0
     power = 0
-    while n > 0:
-        digit = n % 10
+    digits = '0123456789abcdefghijklmnopqrstuvwxyz'
+    for digit in reversed(n):
+        if digit.isdigit():
+            digit = int(digit)
+        else:
+            digit = 10 + ord(digit) - ord('a')  # 알파벳 처리
         decimal_value += digit * (base ** power)
-        n //= 10
         power += 1
     return decimal_value
 
@@ -31,7 +34,7 @@ def base_converter(N, A, B):
 
 # 입력값 받기
 A, N, B = input().split()
-N = int(N)
+N = str(N)
 A = int(A)
 B = int(B)
 
